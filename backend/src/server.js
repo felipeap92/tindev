@@ -6,7 +6,7 @@ const routes = require('./routes');
 
 mongoose.connect(process.env.MONGODB_CONNECTION, { useNewUrlParser: true });
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3333;
 const server = express();
 server.use(cors());
 server.use(express.json())
