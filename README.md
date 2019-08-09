@@ -33,3 +33,15 @@ $ yarn start
 ```
 
 \* Don't forget to run the `backend` project on port `3333` before you run this one. If you have changed the default port, don't forget to change the API base URL from `./frontend/src/services/api.js` as well.
+
+## Mobile (React Native)
+
+To install dependencies and run the project in an Android smartphone go to `./mobile` folder and run:
+
+```
+$ yarn install
+$ yarn react-native run-android
+$ yarn start
+```
+
+\* Don't forget to run the `backend` project on port `3333` before you run this one. If you have changed the default port, don't forget to change the API base URL from `./mobile/src/services/api.js` as well.
