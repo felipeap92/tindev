@@ -13,12 +13,14 @@ export default function Main({ match }) {
     const user = match.params.id;
     const [users, setUsers] = useState([]);
     const [matchDev, setMatchDev] = useState(null);
+    let loading = true;
 
     useEffect(() => {
         (async function loadUsers() {
             const response = await api.get('/devs', { headers: { user } });
 
             setUsers(response.data);
+            loading = false;
         })();
     }, [user]);
 
@@ -48,6 +50,7 @@ export default function Main({ match }) {
             <Link to="/">
                 <img src={logo} alt="TinDev" />
             </Link>
+
             {users.length > 0 ? (
                 <ul>
                     {users.map(user => (
@@ -69,8 +72,10 @@ export default function Main({ match }) {
                         </li>
                     ))}
                 </ul>
+            ) : !loading ? (
+                <div className="empty">No more devs available :(</div>
             ) : (
-                <div className="empty">Acabou :(</div>
+                <div className="empty">Loading...</div>
             )}
 
             {matchDev && (

@@ -10,49 +10,37 @@ import dislike from '../assets/dislike.png';
 import itsamatch from '../assets/itsamatch.png';
 
 export default function Main({ navigation }) {
-    const id = navigation.getParam('user');
+    const user = navigation.getParam('user');
     const [users, setUsers] = useState([]);
     const [matchDev, setMatchDev] = useState(null);
+    let loading = true;
 
     useEffect(() => {
         (async function loadUsers() {
-            const response = await api.get('/devs', {
-                headers: {
-                    user: id
-                }
-            });
+            const response = await api.get('/devs', { headers: { user } });
 
             setUsers(response.data);
+            loading = false;
         })();
-    }, [id]);
+    }, [user]);
 
     useEffect(() => {
-        const socket = io('http://localhost:3333', {
-            query: { user: id }
-        });
+        const socket = io('http://localhost:3333', { query: { user } });
 
         socket.on('match', dev => {
             setMatchDev(dev);
         });
-    }, [id]);
+    }, [user]);
 
     async function handleLike() {
-        const [user, ...rest] = users;
-        await api.post(`/devs/${user._id}/likes`, null, {
-            headers: {
-                user: id
-            }
-        });
+        const [targetUser, ...rest] = users;
+        await api.post(`/devs/${targetUser._id}/likes`, null, { headers: { user } });
 
         setUsers(rest);
     }
     async function handleDislike() {
-        const [user, ...rest] = users;
-        await api.post(`/devs/${user._id}/dislikes`, null, {
-            headers: {
-                user: id
-            }
-        });
+        const [targetUser, ...rest] = users;
+        await api.post(`/devs/${targetUser._id}/dislikes`, null, { headers: { user } });
 
         setUsers(rest);
     }
@@ -85,8 +73,10 @@ export default function Main({ navigation }) {
                             </View>
                         </View>
                     ))
+                ) : !loading ? (
+                    <Text style={styles.empty}>No more devs available :(</Text>
                 ) : (
-                    <Text style={styles.empty}>Acabou :(</Text>
+                    <Text style={styles.empty}>Loading...</Text>
                 )}
             </View>
 
@@ -107,13 +97,6 @@ export default function Main({ navigation }) {
                     <Image style={styles.matchAvatar} source={{ uri: matchDev.avatar }} />
                     <Text style={styles.matchName}>{matchDev.name}</Text>
                     <Text style={styles.matchBio}>{matchDev.bio}</Text>
-
-                    {/* <Image
-                        style={styles.matchAvatar}
-                        source={{ uri: 'https://avatars1.githubusercontent.com/u/5229922?v=4' }}
-                    />
-                    <Text style={styles.matchName}>Felipe de Assis Pinto</Text>
-                    <Text style={styles.matchBio}>Bioooooooooooo aewawe</Text> */}
 
                     <TouchableOpacity onPress={() => setMatchDev(null)}>
                         <Text style={styles.closeMatch}>CLOSE</Text>
