@@ -2,7 +2,9 @@
 
 TinDev is a Tinder for developers where you can find another developers with same experiencies as you and who knows start a new startup together?!
 
-This project is based on OmniStack 8.0 Weekend and it has the backend, frontend and  mobile application implementation using Node.js (express.js, mongoose, axios), React and React Native.
+This project is based on OmniStack 8.0 Weekend and it has the backend, frontend and  mobile application implementation using Node.js (express.js, mongoose, axios, socket.io), React and React Native.
+
+In this project you can login with your GitHub username and like or dislike every developer from the database. If any of them likes you back a "It's a match" effect will pop up for both of you.
 
 # Install and Run
 
@@ -25,6 +27,8 @@ $ yarn dev
 ```
 ## Frontend (React)
 
+![Frontend](frontend-sample.gif)
+
 To install dependencies and run the project go to `./frontend` folder and run:
 
 ```
@@ -35,6 +39,8 @@ $ yarn start
 \* Don't forget to run the `backend` project on port `3333` before you run this one. If you have changed the default port, don't forget to change the API base URL from `./frontend/src/services/api.js` as well.
 
 ## Mobile (React Native)
+
+![Mobile](mobile-sample.gif)
 
 To install dependencies and run the project in an Android smartphone go to `./mobile` folder and run:
 
