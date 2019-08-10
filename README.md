@@ -1,4 +1,4 @@
-# TinDev
+# ![TinDev](./docs/logo.svg)
 
 TinDev is a Tinder for developers where you can find another developers with same experiencies as you and who knows start a new startup together?!
 
