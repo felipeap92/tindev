@@ -27,7 +27,7 @@ $ yarn dev
 ```
 ## Frontend (React)
 
-![Frontend](frontend-sample.gif)
+![Frontend](./docs/frontend-sample.gif)
 
 To install dependencies and run the project go to `./frontend` folder and run:
 
@@ -40,7 +40,7 @@ $ yarn start
 
 ## Mobile (React Native)
 
-![Mobile](mobile-sample.gif)
+![Mobile](./docs/mobile-sample.gif)
 
 To install dependencies and run the project in an Android smartphone go to `./mobile` folder and run:
 
